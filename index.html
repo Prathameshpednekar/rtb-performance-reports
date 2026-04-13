@@ -255,6 +255,7 @@
                         <div class="infra-card-row"><span class="label">IP Address</span><span class="value">23.226.123.250</span></div>
                         <div class="infra-card-row"><span class="label">Port</span><span class="value">80 (HTTP)</span></div>
                         <div class="infra-card-row"><span class="label">CPU</span><span class="value">4 vCPUs</span></div>
+                        <div class="infra-card-row"><span class="label">RAM</span><span class="value">16 GB</span></div>
                         <div class="infra-card-row"><span class="label">Status</span><span class="value">TEST TARGET</span></div>
                     </div>
                 </div>
@@ -316,17 +317,16 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Test</th>
+                        <th>Sample Requests</th>
                         <th>Threads</th>
                         <th>Loops</th>
-                        <th>Total Samples</th>
                         <th>Duration</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td><strong>1M Test</strong></td><td>205</td><td>4,878</td><td>1,000,000</td><td>~8-9 minutes</td></tr>
-                    <tr><td><strong>1.5M Test</strong></td><td>205</td><td>7,317</td><td>1,500,000</td><td>~13-14 minutes</td></tr>
-                    <tr><td><strong>2M Test</strong></td><td>205</td><td>9,756</td><td>2,000,000</td><td>~18-19 minutes</td></tr>
+                    <tr><td><strong>1,000,000</strong></td><td>205</td><td>4,878</td><td>~8-9 minutes</td></tr>
+                    <tr><td><strong>1,500,000</strong></td><td>205</td><td>7,317</td><td>~13-14 minutes</td></tr>
+                    <tr><td><strong>2,000,000</strong></td><td>205</td><td>9,756</td><td>~18-19 minutes</td></tr>
                 </tbody>
             </table>
         </div>
@@ -341,9 +341,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Test</th>
-                        <th>Samples</th>
+                        <th>Sample Requests</th>
                         <th>QPS</th>
+                        <th>Fill Rate</th>
                         <th>200 (Bid)</th>
                         <th>204 (No Bid)</th>
                         <th>Errors</th>
@@ -355,9 +355,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>1M</strong></td>
-                        <td>1,000,000</td>
+                        <td><strong>1,000,000</strong></td>
                         <td>1,425</td>
+                        <td>3.43%</td>
                         <td>34,316</td>
                         <td>965,674</td>
                         <td class="highlight-green">0.00%</td>
@@ -367,9 +367,9 @@
                         <td><span class="status-badge stable">Stable</span></td>
                     </tr>
                     <tr>
-                        <td><strong>1.5M</strong></td>
-                        <td>1,500,000</td>
+                        <td><strong>1,500,000</strong></td>
                         <td>1,505</td>
+                        <td>3.08%</td>
                         <td>46,148</td>
                         <td>1,453,837</td>
                         <td class="highlight-green">0.00%</td>
@@ -379,9 +379,9 @@
                         <td><span class="status-badge stable">Stable</span></td>
                     </tr>
                     <tr class="row-error">
-                        <td><strong>2M</strong></td>
-                        <td>2,000,000</td>
+                        <td><strong>2,000,000</strong></td>
                         <td>1,416</td>
+                        <td>3.42%</td>
                         <td>66,396</td>
                         <td>1,877,063</td>
                         <td class="highlight-red">2.83%</td>
@@ -404,9 +404,9 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Test</th>
-                        <th>Samples</th>
+                        <th>Sample Requests</th>
                         <th>QPS</th>
+                        <th>Fill Rate</th>
                         <th>200 (Bid)</th>
                         <th>204 (No Bid)</th>
                         <th>Errors</th>
@@ -418,9 +418,9 @@
                 </thead>
                 <tbody>
                     <tr class="row-success">
-                        <td><strong>1M</strong></td>
-                        <td>1,000,000</td>
+                        <td><strong>1,000,000</strong></td>
                         <td class="highlight-green">1,937</td>
+                        <td>2.53%</td>
                         <td>25,254</td>
                         <td>974,736</td>
                         <td class="highlight-green">0.00%</td>
@@ -430,9 +430,9 @@
                         <td><span class="status-badge stable">Stable</span></td>
                     </tr>
                     <tr class="row-success">
-                        <td><strong>1.5M</strong></td>
-                        <td>1,500,000</td>
+                        <td><strong>1,500,000</strong></td>
                         <td class="highlight-green">1,854</td>
+                        <td>2.63%</td>
                         <td>39,436</td>
                         <td>1,460,549</td>
                         <td class="highlight-green">0.00%</td>
@@ -442,9 +442,9 @@
                         <td><span class="status-badge stable">Stable</span></td>
                     </tr>
                     <tr class="row-success">
-                        <td><strong>2M</strong></td>
-                        <td>2,000,000</td>
+                        <td><strong>2,000,000</strong></td>
                         <td class="highlight-green">1,780</td>
+                        <td>2.82%</td>
                         <td>56,423</td>
                         <td>1,943,557</td>
                         <td class="highlight-green">0.00%</td>
@@ -525,29 +525,21 @@
                         <div class="error-item">
                             <div class="error-icon green">1</div>
                             <div class="error-content">
-                                <h4>Increased Connection Pool Size</h4>
-                                <p>Due to the changes made, the connection pool limits are expanded. Server now handles more concurrent connections without refusing requests.</p>
-                                <span class="improvement-badge">Result: 0 connection refused errors</span>
-                            </div>
-                        </div>
-                        <div class="error-item">
-                            <div class="error-icon green">2</div>
-                            <div class="error-content">
                                 <h4>Reduced Response Time</h4>
                                 <p>Due to the changes made, response time is reduced by 22%. Threads/workers no longer have to wait as long for responses to complete.</p>
                                 <span class="improvement-badge">Result: 322ms to 270ms (200 response)</span>
                             </div>
                         </div>
                         <div class="error-item">
-                            <div class="error-icon green">3</div>
+                            <div class="error-icon green">2</div>
                             <div class="error-content">
-                                <h4>Expanded Worker Thread Pool</h4>
+                                <h4>Reduced Load on Worker Threads</h4>
                                 <p>Due to the changes made, worker threads are freed up quicker with faster response times. More requests can be processed without queuing.</p>
                                 <span class="improvement-badge">Result: +28% QPS throughput</span>
                             </div>
                         </div>
                         <div class="error-item">
-                            <div class="error-icon green">4</div>
+                            <div class="error-icon green">3</div>
                             <div class="error-content">
                                 <h4>JVM & Memory Optimization</h4>
                                 <p>Due to the changes made, GC pauses are minimized. The server maintains stable performance without latency spikes.</p>
