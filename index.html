@@ -344,7 +344,6 @@
                         <th>Test</th>
                         <th>Samples</th>
                         <th>QPS</th>
-                        <th>Fill Rate</th>
                         <th>200 (Bid)</th>
                         <th>204 (No Bid)</th>
                         <th>Errors</th>
@@ -359,7 +358,6 @@
                         <td><strong>1M</strong></td>
                         <td>1,000,000</td>
                         <td>1,425</td>
-                        <td>3.43%</td>
                         <td>34,316</td>
                         <td>965,674</td>
                         <td class="highlight-green">0.00%</td>
@@ -372,7 +370,6 @@
                         <td><strong>1.5M</strong></td>
                         <td>1,500,000</td>
                         <td>1,505</td>
-                        <td>3.08%</td>
                         <td>46,148</td>
                         <td>1,453,837</td>
                         <td class="highlight-green">0.00%</td>
@@ -385,7 +382,6 @@
                         <td><strong>2M</strong></td>
                         <td>2,000,000</td>
                         <td>1,416</td>
-                        <td>3.42%</td>
                         <td>66,396</td>
                         <td>1,877,063</td>
                         <td class="highlight-red">2.83%</td>
@@ -411,7 +407,6 @@
                         <th>Test</th>
                         <th>Samples</th>
                         <th>QPS</th>
-                        <th>Fill Rate</th>
                         <th>200 (Bid)</th>
                         <th>204 (No Bid)</th>
                         <th>Errors</th>
@@ -426,7 +421,6 @@
                         <td><strong>1M</strong></td>
                         <td>1,000,000</td>
                         <td class="highlight-green">1,937</td>
-                        <td>2.53%</td>
                         <td>25,254</td>
                         <td>974,736</td>
                         <td class="highlight-green">0.00%</td>
@@ -439,7 +433,6 @@
                         <td><strong>1.5M</strong></td>
                         <td>1,500,000</td>
                         <td class="highlight-green">1,854</td>
-                        <td>2.63%</td>
                         <td>39,436</td>
                         <td>1,460,549</td>
                         <td class="highlight-green">0.00%</td>
@@ -452,7 +445,6 @@
                         <td><strong>2M</strong></td>
                         <td>2,000,000</td>
                         <td class="highlight-green">1,780</td>
-                        <td>2.82%</td>
                         <td>56,423</td>
                         <td>1,943,557</td>
                         <td class="highlight-green">0.00%</td>
@@ -803,12 +795,6 @@
                         <td class="highlight-green">5.78</td>
                         <td class="highlight-green">-6%</td>
                     </tr>
-                    <tr>
-                        <td><strong>Fill Rate</strong></td>
-                        <td class="highlight-green">3.31%</td>
-                        <td>2.66%</td>
-                        <td>-20%</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -854,13 +840,6 @@
                         <div class="finding-title">Consistent Performance</div>
                     </div>
                     <p class="finding-text">New Optimized Server maintains consistent performance across all load levels (1M to 2M) without degradation. QPS stays above 1780 even at maximum load.</p>
-                </div>
-                <div class="finding-card yellow">
-                    <div class="finding-header">
-                        <div class="finding-number">6</div>
-                        <div class="finding-title">Fill Rate Trade-off</div>
-                    </div>
-                    <p class="finding-text">New Optimized Server has 20% lower fill rate (2.66% vs 3.31%). This may be related to configuration changes and should be investigated separately.</p>
                 </div>
             </div>
         </div>
