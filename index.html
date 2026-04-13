@@ -57,15 +57,14 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
         .flow-arrow { font-size: 24px; color: #9ca3af; }
         .flow-label { font-size: 12px; color: #666; margin-top: 5px; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: #1e3a5f; color: white; padding: 12px 15px; text-align: left; font-weight: 600; }
-        td { padding: 12px 15px; border-bottom: 1px solid #e5e7eb; }
+        th { background: #1e3a5f; color: white; padding: 12px 10px; text-align: left; font-weight: 600; font-size: 13px; }
+        td { padding: 12px 10px; border-bottom: 1px solid #e5e7eb; font-size: 13px; }
         tr:hover { background: #f8fafc; }
         .highlight-red { color: #ef4444; font-weight: 600; }
         .highlight-green { color: #22c55e; font-weight: 600; }
         .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
         .status-badge.stable { background: #dcfce7; color: #166534; }
         .status-badge.errors { background: #fee2e2; color: #991b1b; }
-        .status-badge.winner { background: #dbeafe; color: #1e40af; }
         .comparison-boxes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 20px; }
         .comparison-box { border-radius: 12px; padding: 30px; text-align: center; }
         .comparison-box.old { background: #fef2f2; border: 2px solid #ef4444; }
@@ -88,22 +87,28 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
         .finding-number { width: 28px; height: 28px; background: #1e3a5f; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; }
         .finding-title { font-weight: 600; color: #1e3a5f; }
         .finding-text { color: #666; font-size: 14px; }
-        .verdict-box { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 3px solid #22c55e; border-radius: 16px; padding: 40px; text-align: center; margin-top: 20px; }
-        .verdict-title { font-size: 36px; font-weight: 700; color: #166534; margin-bottom: 10px; }
-        .verdict-subtitle { font-size: 18px; color: #166534; margin-bottom: 30px; }
-        .verdict-stats { display: flex; justify-content: center; gap: 40px; }
-        .verdict-stat { text-align: center; }
-        .verdict-stat .value { font-size: 24px; font-weight: 700; color: #166534; }
-        .verdict-stat .label { font-size: 14px; color: #666; }
-        @media (max-width: 1024px) { .summary-cards, .infra-cards { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .summary-cards, .infra-cards, .charts-grid, .findings-grid, .comparison-boxes { grid-template-columns: 1fr; } }
+        
+        /* New Verdict Design */
+        .verdict-container { margin-top: 20px; }
+        .verdict-header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; padding: 30px; border-radius: 12px 12px 0 0; text-align: center; }
+        .verdict-title { font-size: 28px; font-weight: 700; margin-bottom: 5px; }
+        .verdict-subtitle { font-size: 16px; opacity: 0.9; }
+        .verdict-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); background: white; border: 2px solid #1e3a5f; border-top: none; border-radius: 0 0 12px 12px; }
+        .verdict-stat-box { padding: 30px 20px; text-align: center; border-right: 1px solid #e5e7eb; }
+        .verdict-stat-box:last-child { border-right: none; }
+        .verdict-stat-box .number { font-size: 42px; font-weight: 700; color: #1e3a5f; }
+        .verdict-stat-box .number.green { color: #22c55e; }
+        .verdict-stat-box .label { font-size: 14px; color: #666; margin-top: 5px; }
+        
+        @media (max-width: 1024px) { .summary-cards, .infra-cards, .verdict-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .summary-cards, .infra-cards, .charts-grid, .findings-grid, .comparison-boxes, .verdict-stats-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <div class="header">
         <span class="header-badge">TechBravo Project - Phase 2</span>
         <h1>RTB Bidder Performance Comparison Report</h1>
-        <p class="subtitle">OwnAdx Ad Exchange Platform - OLD vs NEW v2 Server Performance Analysis</p>
+        <p class="subtitle">OwnAdx Ad Exchange Platform - OLD vs New Optimized Server Performance Analysis</p>
         <div class="header-meta">
             <span>Date: April 10, 2026</span>
             <span>Tool: Apache JMeter 5.6.3</span>
@@ -118,7 +123,7 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                 <div class="section-number">1</div>
                 <h2 class="section-title">Executive Summary</h2>
             </div>
-            <p>Performance testing was conducted on the OwnAdx RTB Bidder comparing the OLD server configuration against the NEW v2 optimized configuration. Tests were progressively scaled from 1M to 2M samples with 205 concurrent threads. The testing revealed that NEW v2 achieves significantly better performance with 28% higher throughput, 22% faster response times, and most critically, 0% errors at 2M load compared to 2.83% errors on the OLD server.</p>
+            <p>Performance testing was conducted on the OwnAdx RTB Bidder comparing the OLD server configuration against the New Optimized Server configuration. Tests were progressively scaled from 1M to 2M samples with 205 concurrent threads. The testing revealed that New Optimized Server achieves significantly better performance with 28% higher throughput, 22% faster response times, and most critically, 0% errors at 2M load compared to 2.83% errors on the OLD server.</p>
             <div class="summary-cards">
                 <div class="summary-card orange">
                     <div class="label">QPS Improvement</div>
@@ -267,7 +272,8 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                         <th>200 (Bid)</th>
                         <th>204 (No Bid)</th>
                         <th>Errors</th>
-                        <th>Avg (ms)</th>
+                        <th>Avg 200 (ms)</th>
+                        <th>Avg 204 (ms)</th>
                         <th>Load Avg</th>
                         <th>Status</th>
                     </tr>
@@ -281,7 +287,8 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                         <td>34,316</td>
                         <td>965,674</td>
                         <td class="highlight-green">0.00%</td>
-                        <td>141</td>
+                        <td>322</td>
+                        <td>135</td>
                         <td>5.96</td>
                         <td><span class="status-badge stable">Stable</span></td>
                     </tr>
@@ -293,7 +300,8 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                         <td>46,148</td>
                         <td>1,453,837</td>
                         <td class="highlight-green">0.00%</td>
-                        <td>133</td>
+                        <td>321</td>
+                        <td>127</td>
                         <td>6.20</td>
                         <td><span class="status-badge stable">Stable</span></td>
                     </tr>
@@ -305,7 +313,8 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                         <td>66,396</td>
                         <td>1,877,063</td>
                         <td class="highlight-red">2.83%</td>
-                        <td>144</td>
+                        <td>324</td>
+                        <td>134</td>
                         <td>6.25</td>
                         <td><span class="status-badge errors">Errors</span></td>
                     </tr>
@@ -313,13 +322,13 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
             </table>
         </div>
 
-        <!-- Section 6: NEW v2 Results -->
+        <!-- Section 6: New Optimized Server Results -->
         <div class="section">
             <div class="section-header">
                 <div class="section-number">6</div>
-                <h2 class="section-title">NEW v2 Server Test Results (After Optimization)</h2>
+                <h2 class="section-title">New Optimized Server Test Results (After Optimization)</h2>
             </div>
-            <p>Results from the NEW v2 optimized configuration. All tests completed with 0% errors and improved performance metrics.</p>
+            <p>Results from the New Optimized Server configuration. All tests completed with 0% errors and improved performance metrics.</p>
             <table>
                 <thead>
                     <tr>
@@ -330,7 +339,8 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                         <th>200 (Bid)</th>
                         <th>204 (No Bid)</th>
                         <th>Errors</th>
-                        <th>Avg (ms)</th>
+                        <th>Avg 200 (ms)</th>
+                        <th>Avg 204 (ms)</th>
                         <th>Load Avg</th>
                         <th>Status</th>
                     </tr>
@@ -344,7 +354,8 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                         <td>25,254</td>
                         <td>974,736</td>
                         <td class="highlight-green">0.00%</td>
-                        <td class="highlight-green">105</td>
+                        <td class="highlight-green">263</td>
+                        <td class="highlight-green">101</td>
                         <td>5.78</td>
                         <td><span class="status-badge stable">Stable</span></td>
                     </tr>
@@ -356,7 +367,8 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                         <td>39,436</td>
                         <td>1,460,549</td>
                         <td class="highlight-green">0.00%</td>
-                        <td class="highlight-green">109</td>
+                        <td class="highlight-green">275</td>
+                        <td class="highlight-green">105</td>
                         <td>5.85</td>
                         <td><span class="status-badge stable">Stable</span></td>
                     </tr>
@@ -368,7 +380,8 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                         <td>56,423</td>
                         <td>1,943,557</td>
                         <td class="highlight-green">0.00%</td>
-                        <td class="highlight-green">114</td>
+                        <td class="highlight-green">272</td>
+                        <td class="highlight-green">109</td>
                         <td>5.70</td>
                         <td><span class="status-badge stable">Stable</span></td>
                     </tr>
@@ -382,7 +395,7 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                 <div class="section-number">7</div>
                 <h2 class="section-title">Critical: Error Rate Comparison at 2M Load</h2>
             </div>
-            <p>The most critical finding is the stability difference at 2M samples. OLD server failed with 2.83% errors while NEW v2 maintained 0% errors.</p>
+            <p>The most critical finding is the stability difference at 2M samples. OLD server failed with 2.83% errors while New Optimized Server maintained 0% errors.</p>
             <div class="comparison-boxes">
                 <div class="comparison-box old">
                     <div class="title">OLD SERVER</div>
@@ -391,7 +404,7 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                     <div class="detail" style="margin-top: 10px;">Connection refused errors under load</div>
                 </div>
                 <div class="comparison-box new">
-                    <div class="title">NEW v2 SERVER</div>
+                    <div class="title">NEW OPTIMIZED SERVER</div>
                     <div class="big-value">0.00%</div>
                     <div class="detail">0 failed requests</div>
                     <div class="detail" style="margin-top: 10px;">100% stable under heavy load</div>
@@ -425,7 +438,7 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
             </div>
         </div>
 
-        <!-- Section 9: Side by Side -->
+        <!-- Section 9: Side by Side (No Winner Column) -->
         <div class="section">
             <div class="section-header">
                 <div class="section-number">9</div>
@@ -436,9 +449,8 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                     <tr>
                         <th>Metric</th>
                         <th>OLD Server</th>
-                        <th>NEW v2</th>
+                        <th>New Optimized Server</th>
                         <th>Difference</th>
-                        <th>Winner</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -447,35 +459,36 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                         <td>1,449</td>
                         <td class="highlight-green">1,857</td>
                         <td class="highlight-green">+28%</td>
-                        <td><span class="status-badge winner">NEW v2</span></td>
                     </tr>
                     <tr>
-                        <td><strong>Avg Response Time</strong></td>
-                        <td>139ms</td>
-                        <td class="highlight-green">109ms</td>
-                        <td class="highlight-green">-22%</td>
-                        <td><span class="status-badge winner">NEW v2</span></td>
+                        <td><strong>Avg 200 Response Time</strong></td>
+                        <td>322ms</td>
+                        <td class="highlight-green">270ms</td>
+                        <td class="highlight-green">-16%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Avg 204 Response Time</strong></td>
+                        <td>132ms</td>
+                        <td class="highlight-green">105ms</td>
+                        <td class="highlight-green">-20%</td>
                     </tr>
                     <tr>
                         <td><strong>Error Rate (2M)</strong></td>
                         <td class="highlight-red">2.83%</td>
                         <td class="highlight-green">0.00%</td>
                         <td class="highlight-green">-100%</td>
-                        <td><span class="status-badge winner">NEW v2</span></td>
                     </tr>
                     <tr>
                         <td><strong>Load Average</strong></td>
                         <td>6.14</td>
                         <td class="highlight-green">5.78</td>
                         <td class="highlight-green">-6%</td>
-                        <td><span class="status-badge winner">NEW v2</span></td>
                     </tr>
                     <tr>
                         <td><strong>Fill Rate</strong></td>
                         <td class="highlight-green">3.31%</td>
                         <td>2.66%</td>
                         <td>-20%</td>
-                        <td><span class="status-badge" style="background:#fef3c7;color:#92400e;">OLD</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -493,70 +506,71 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                         <div class="finding-number">1</div>
                         <div class="finding-title">Throughput Improvement</div>
                     </div>
-                    <p class="finding-text">NEW v2 achieves 28% higher throughput (1857 vs 1449 QPS average). This means the optimized server can handle significantly more requests per second.</p>
+                    <p class="finding-text">New Optimized Server achieves 28% higher throughput (1857 vs 1449 QPS average). This means the optimized server can handle significantly more requests per second.</p>
                 </div>
                 <div class="finding-card red">
                     <div class="finding-header">
                         <div class="finding-number">2</div>
                         <div class="finding-title">Response Time Improvement</div>
                     </div>
-                    <p class="finding-text">NEW v2 is 22% faster in average response time (109ms vs 139ms). Faster responses improve RTB auction competitiveness.</p>
+                    <p class="finding-text">New Optimized Server is 16% faster for bid responses (270ms vs 322ms) and 20% faster for no-bid responses (105ms vs 132ms).</p>
                 </div>
                 <div class="finding-card green">
                     <div class="finding-header">
                         <div class="finding-number">3</div>
                         <div class="finding-title">Stability Under Load</div>
                     </div>
-                    <p class="finding-text">Critical: OLD server had 2.83% errors (56,521 failures) at 2M load. NEW v2 has 0% errors - completely stable under the same load.</p>
+                    <p class="finding-text">Critical: OLD server had 2.83% errors (56,521 failures) at 2M load. New Optimized Server has 0% errors - completely stable under the same load.</p>
                 </div>
                 <div class="finding-card yellow">
                     <div class="finding-header">
                         <div class="finding-number">4</div>
                         <div class="finding-title">CPU Efficiency</div>
                     </div>
-                    <p class="finding-text">NEW v2 runs at 6% lower CPU load (5.78 vs 6.14 average) while delivering better performance. More efficient resource utilization.</p>
+                    <p class="finding-text">New Optimized Server runs at 6% lower CPU load (5.78 vs 6.14 average) while delivering better performance. More efficient resource utilization.</p>
                 </div>
                 <div class="finding-card blue">
                     <div class="finding-header">
                         <div class="finding-number">5</div>
                         <div class="finding-title">Consistent Performance</div>
                     </div>
-                    <p class="finding-text">NEW v2 maintains consistent performance across all load levels (1M to 2M) without degradation. QPS stays above 1780 even at maximum load.</p>
+                    <p class="finding-text">New Optimized Server maintains consistent performance across all load levels (1M to 2M) without degradation. QPS stays above 1780 even at maximum load.</p>
                 </div>
                 <div class="finding-card yellow">
                     <div class="finding-header">
                         <div class="finding-number">6</div>
                         <div class="finding-title">Fill Rate Trade-off</div>
                     </div>
-                    <p class="finding-text">NEW v2 has 20% lower fill rate (2.66% vs 3.31%). This may be related to configuration changes and should be investigated separately.</p>
+                    <p class="finding-text">New Optimized Server has 20% lower fill rate (2.66% vs 3.31%). This may be related to configuration changes and should be investigated separately.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Section 11: Final Verdict -->
+        <!-- Section 11: Final Verdict - New Design -->
         <div class="section">
             <div class="section-header">
                 <div class="section-number">11</div>
                 <h2 class="section-title">Final Verdict</h2>
             </div>
-            <div class="verdict-box">
-                <div class="verdict-title">NEW v2 is PRODUCTION READY</div>
-                <div class="verdict-subtitle">Recommended for immediate deployment</div>
-                <div class="verdict-stats">
-                    <div class="verdict-stat">
-                        <div class="value">+28%</div>
-                        <div class="label">QPS</div>
+            <div class="verdict-container">
+                <div class="verdict-header">
+                    <div class="verdict-title">NEW OPTIMIZED SERVER IS PRODUCTION READY</div>
+                </div>
+                <div class="verdict-stats-grid">
+                    <div class="verdict-stat-box">
+                        <div class="number green">+28%</div>
+                        <div class="label">QPS Improvement</div>
                     </div>
-                    <div class="verdict-stat">
-                        <div class="value">-22%</div>
-                        <div class="label">Latency</div>
+                    <div class="verdict-stat-box">
+                        <div class="number green">-22%</div>
+                        <div class="label">Response Time</div>
                     </div>
-                    <div class="verdict-stat">
-                        <div class="value">0%</div>
-                        <div class="label">Errors</div>
+                    <div class="verdict-stat-box">
+                        <div class="number green">0%</div>
+                        <div class="label">Error Rate</div>
                     </div>
-                    <div class="verdict-stat">
-                        <div class="value">-6%</div>
+                    <div class="verdict-stat-box">
+                        <div class="number green">-6%</div>
                         <div class="label">CPU Load</div>
                     </div>
                 </div>
@@ -575,7 +589,7 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                 labels: labels,
                 datasets: [
                     { label: 'OLD Server', data: [1425, 1505, 1416], backgroundColor: oldColor },
-                    { label: 'NEW v2', data: [1937, 1854, 1780], backgroundColor: newColor }
+                    { label: 'New Optimized', data: [1937, 1854, 1780], backgroundColor: newColor }
                 ]
             },
             options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
@@ -586,8 +600,8 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
             data: {
                 labels: labels,
                 datasets: [
-                    { label: 'OLD Server', data: [141, 133, 144], backgroundColor: oldColor },
-                    { label: 'NEW v2', data: [105, 109, 114], backgroundColor: newColor }
+                    { label: 'OLD Server (200)', data: [322, 321, 324], backgroundColor: oldColor },
+                    { label: 'New Optimized (200)', data: [263, 275, 272], backgroundColor: newColor }
                 ]
             },
             options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
@@ -599,7 +613,7 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                 labels: labels,
                 datasets: [
                     { label: 'OLD Server', data: [0, 0, 2.83], backgroundColor: oldColor },
-                    { label: 'NEW v2', data: [0, 0, 0], backgroundColor: newColor }
+                    { label: 'New Optimized', data: [0, 0, 0], backgroundColor: newColor }
                 ]
             },
             options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
@@ -611,7 +625,7 @@ cat > /home/qa-team/results/rtb_performance_report.html << 'EOF'
                 labels: labels,
                 datasets: [
                     { label: 'OLD Server', data: [5.96, 6.20, 6.25], backgroundColor: oldColor },
-                    { label: 'NEW v2', data: [5.78, 5.85, 5.70], backgroundColor: newColor }
+                    { label: 'New Optimized', data: [5.78, 5.85, 5.70], backgroundColor: newColor }
                 ]
             },
             options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
